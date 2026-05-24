@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 const { ObjectId } = require('mongodb')
 const AttendanceSchema = mongoose.Schema({
+    name:{
+        type: String,
+        required: [true,"Please enter a name"]
+    },
     user:{
         type: mongoose.Types.ObjectId,
         ref: 'User',
@@ -20,6 +24,12 @@ const AttendanceSchema = mongoose.Schema({
     checkInTime:{
         type: Date,
         default: Date.now
+    },
+    checkOutTime:{
+        type: Date
+    },
+    totalHours: {
+        type: Number        
     }
 })
 
