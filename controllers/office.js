@@ -5,10 +5,10 @@ const NotFoundError = require('../errors/notFound')
 
 
 const setOffice = async (req,res) =>{
-    const {role} = req.user
-    if(role === 'employee'){
-        throw new UnauthorizedError('You are not allowed to perform this action')
-    }
+    // const {role} = req.user
+    // if(role === 'employee'){
+    //     throw new UnauthorizedError('You are not allowed to perform this action')
+    // }
     const {officeName,coordinates,radius} = req.body
     const office = await Office.create({officeName,location:{coordinates},radius})
 
@@ -17,10 +17,10 @@ const setOffice = async (req,res) =>{
 
 
 const getAllAttendance = async(req,res) =>{
-    const {role} = req.user
-    if(role === 'employee'){
-        throw new UnauthorizedError('You are not allowed to perform this action')
-    }
+    // const {role} = req.user
+    // if(role === 'employee'){
+    //     throw new UnauthorizedError('You are not allowed to perform this action')
+    // }
     const attendance = await Attendance.find({})
     if(attendance.length < 1){
         throw new NotFoundError("No records found")
@@ -29,10 +29,10 @@ const getAllAttendance = async(req,res) =>{
 }
 
 const getEmployeeAttendance = async(req,res) =>{
-    const {role} = req.user
-    if(role === 'employee'){
-        throw new UnauthorizedError('You are not allowed to perform this action')
-    }
+    // const {role} = req.user
+    // if(role === 'employee'){
+    //     throw new UnauthorizedError('You are not allowed to perform this action')
+    // }
     const {id} = req.params
     const attendance = await Attendance.findOne({_id:id})
     if(!attendance){

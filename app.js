@@ -10,12 +10,13 @@ const connectDB = require('./db/connectdb')
 require('dotenv').config()
 const errorHandlerMiddleware =  require('./middleware/errorHandler')
 const auth = require('./middleware/authentication')
+const authorize = require('./middleware/authorization')
 app.use(express.json())
 
 
 app.use('/api/v1/auth',authRouter)
-app.use('/api/v1/attendance',auth,attendanceRouter)
-app.use('/api/v1/office',auth,officeRouter)
+app.use('/api/v1/attendance',auth,authorize('employee'),attendanceRouter)
+app.use('/api/v1/office',auth,authorize('admin'),officeRouter)
 
 app.use(errorHandlerMiddleware)
 app.use(notFound)
