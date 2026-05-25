@@ -34,7 +34,7 @@ const getEmployeeAttendance = async(req,res) =>{
     //     throw new UnauthorizedError('You are not allowed to perform this action')
     // }
     const {id} = req.params
-    const attendance = await Attendance.findOne({_id:id})
+    const attendance = await Attendance.find({user:id})
     if(!attendance){
         throw new NotFoundError("No records found")
     }

@@ -6,7 +6,7 @@ const User = require('../models/user')
 const register = async (req,res)=>{
     const user = await User.create(req.body)
     const token = user.createJWT()
-    res.status(200).json({user:{name:user.username},token,msg:`You're role is ${user.role}`})
+    res.status(200).json({name:user.username,token,role:user.role})
 }
 
 const login = async (req,res)=>{
@@ -25,7 +25,7 @@ const login = async (req,res)=>{
     }
 
     const token  = user.createJWT()
-    res.status(200).json({username:user.username,token})
+    res.status(200).json({username:user.username,token,role:user.role})
 }
 
 module.exports = {register,login}
