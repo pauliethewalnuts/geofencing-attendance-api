@@ -29,6 +29,10 @@ app.use(express.static('./public'))
 app.use(express.json())
 app.use(cors())
 
+
+app.get('/',(req,res) =>{
+    res.status(200).send("GEOFENCING-ATTENDANCE-API")
+})
 app.use('/api/v1/auth',authRouter)
 app.use('/api/v1/attendance',auth,authorize('employee'),attendanceRouter)
 app.use('/api/v1/office',auth,authorize('admin'),officeRouter)
